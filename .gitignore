@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -169,3 +170,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+=======
+node_modules
+.mypy_cache/
+qtile/.config/qtile/__pycache__/bars.cpython-312.pyc
+qtile/.config/qtile/__pycache__/colors.cpython-312.pyc
+qtile/.config/qtile/__pycache__/config.cpython-312.pyc
+qtile/.config/qtile/__pycache__/keybinds.cpython-312.pyc
+
+>>>>>>> aa67c6a (Initial commit)
