@@ -1,49 +1,44 @@
 import os
 import subprocess
 
-from bars import main, misc
-from colors import transparent
+from bars import main, misc  # colors
 from keybinds import *
 from libqtile import bar, hook, layout
 from libqtile.config import Match, Screen
 
+layout_theme = {
+    "margin": 8,
+    "border_width": 0,
+    # "border_focus": colors[2],
+    # "border_normal": colors[0],
+}
+
+
 layouts = [
-    layout.MonadTall(
-        border_width=0,
-        margin=8,
-    ),
-    layout.MonadWide(
-        border_width=0,
-        margin=8,
-    ),
-    # layout.Zoomy(),
-    # layout.Max(),
-    # layout.Stack(
-    #     num_stacks=2,
-    #     border_width=0,
-    #     margin=8,
-    # ),
+    layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
+    layout.MonadThreeCol(**layout_theme),
+    layout.Max(**layout_theme),
 ]
 
 
 widget_defaults = dict(
     font="Inter Variable Bold",
     fontsize=14,
-    # background=colors[-1],
-    # foreground=colors[0],
 )
 
+lucid = "#00000000"
 
 screens = [
     Screen(
-        wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/tux.jpg",
+        wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/arc.jpg",
         wallpaper_mode="stretch",
-        top=bar.Bar(main(), 28, background=transparent, margin=[0, 8, 0, 8]),
+        top=bar.Bar(main(), 28, background=lucid, margin=[0, 8, 0, 8]),
     ),
     Screen(
-        wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/tux.jpg",
+        wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/arc.jpg",
         wallpaper_mode="stretch",
-        top=bar.Bar(misc(), 28, background=transparent, margin=[0, 8, 0, 8]),
+        top=bar.Bar(misc(), 28, background=lucid, margin=[0, 8, 0, 8]),
     ),
 ]
 
@@ -52,6 +47,7 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
+cursor_warp = True
 floating_layout = layout.Floating(
     border_width=0,
     float_rules=[
@@ -65,14 +61,12 @@ floating_layout = layout.Floating(
         Match(wm_class="arandr"),
         Match(wm_class="blueman-manager"),
         Match(wm_class="localsend_app"),
-        Match(wm_class="wihotspot"),
+        # Match(wm_class="wihotspot"),
         Match(wm_class="nm-connection-editor"),
-        # Match(wm_class="pcmanfm"),
     ],
 )
 
 
-cursor_warp = True
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
@@ -90,4 +84,4 @@ def autostart():
     subprocess.run([monitorScript])
 
 
-wmname = "qtile"
+wmname = "LG3D"

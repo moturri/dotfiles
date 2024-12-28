@@ -144,9 +144,9 @@ groups.append(
 
 keys.extend(
     [
-        Key(["control"], "1", lazy.group["scratchpad"].dropdown_toggle("term")),
-        Key(["control"], "2", lazy.group["scratchpad"].dropdown_toggle("mixer")),
-        Key(["control"], "3", lazy.group["scratchpad"].dropdown_toggle("ranger")),
-        Key(["control"], "4", lazy.group["scratchpad"].dropdown_toggle("yazi")),
+        Key([mod], "b", lazy.group["scratchpad"].dropdown_toggle("term")),
+        Key([mod], "u", lazy.group["scratchpad"].dropdown_toggle("mixer")),
+        Key([mod], "g", lazy.group["scratchpad"].dropdown_toggle("ranger")),
+        Key([mod], "y", lazy.group["scratchpad"].dropdown_toggle("yazi")),
     ]
 )

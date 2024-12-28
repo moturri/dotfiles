@@ -1,6 +1,8 @@
 #!/bin/bash
 
-xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+xinput set-prop 11 "libinput Tapping Enabled" 1
+xinput set-prop 11 "libinput Accel Speed" 0.5
+# xinput set-prop 11 "libinput Disable While Typing Enabled" 1
 
 xset -b
 

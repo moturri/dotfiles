@@ -6,13 +6,15 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Windows NT (base16)'
-config.font = wezterm.font 'JetBrainsMonoNL NF Medium'
+config.term = 'wezterm'
+config.color_scheme = "Windows NT (base16)"
+config.font = wezterm.font("JetBrainsMonoNL NF Medium")
 config.font_size = 12.0
 config.enable_kitty_graphics = true
 config.front_end = "OpenGL"
---config.force_reverse_video_cursor = true
+config.force_reverse_video_cursor = true
 config.window_background_opacity = 1
+config.unicode_version = 14
 
 config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 config.keys = {
@@ -41,6 +43,7 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.window_decorations = "NONE"
 config.tab_and_split_indices_are_zero_based = true
+config.window_close_confirmation = 'NeverPrompt'
 
 config.colors = {
   tab_bar = {

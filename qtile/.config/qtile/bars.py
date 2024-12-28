@@ -1,9 +1,17 @@
 import subprocess
 
-from colors import colors
 from libqtile.lazy import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration
+
+ultra_dark = [
+    "#0d0d0d",
+    "#d3d3d3",
+    # "#383838",
+    # "#545454",
+]
+
+colors = ultra_dark
 
 widgetDecorations = {
     "background": colors[0],
@@ -11,6 +19,7 @@ widgetDecorations = {
     "decorations": [
         RectDecoration(use_widget_background=True, radius=12, filled=True, group=True),
     ],
+    "padding": 6,
 }
 
 
@@ -20,19 +29,30 @@ def bright():
         ["brightnessctl", "m"], capture_output=True, text=True
     )
 
+    if result.returncode != 0 or max_brightness.returncode != 0:
+        return "🌟  N/A"
+
     current_brightness = int(result.stdout.strip())
     max_brightness = int(max_brightness.stdout.strip())
     brightness_percentage = int((current_brightness / max_brightness) * 100)
 
-    if brightness_percentage > 75:
-        icon = "🌞"
-    elif brightness_percentage > 50:
-        icon = "🌤️"
-    elif brightness_percentage > 25:
-        icon = "🌥️"
+    if brightness_percentage > 80:
+        icon = "🌞 "
+        color = "gold"
+    elif brightness_percentage > 60:
+        icon = "🌤️ "
+        color = "darkorange"
+    elif brightness_percentage > 40:
+        icon = "🌥️ "
+        color = "dodgerblue"
+    elif brightness_percentage > 20:
+        icon = "🌗 "
+        color = "peru"
     else:
-        icon = "🌙"
-    return f"{icon} {brightness_percentage}%"
+        icon = "🌙 "
+        color = "crimson"
+
+    return f'<span foreground="{color}">{icon} {brightness_percentage}%</span>'
 
 
 def batt():
@@ -51,7 +71,7 @@ def batt():
         color = "palegreen"
     elif battery_percentage > 40:
         icon = "  "
-        color = "gold"
+        color = "peru"
     elif battery_percentage > 20:
         icon = "  "
         color = "orange"
@@ -76,18 +96,24 @@ def vol():
         )
         volume_info = result.stdout.strip().split()
         volume_percentage = int(volume_info[4][:-1])
+
+        if volume_percentage > 150:
+            volume_percentage = 150
         if volume_percentage == 0:
             icon = "  "
             color = "red"
-        elif volume_percentage > 105:
+        elif volume_percentage > 125:
             icon = "󰕾  "
             color = "red"
+        elif volume_percentage > 100:
+            icon = "󰕾  "
+            color = "orangered"
         elif volume_percentage > 75:
             icon = "󰕾  "
             color = "orange"
         elif volume_percentage > 50:
             icon = "󰕾  "
-            color = "white"
+            color = "dodgerblue"
         elif volume_percentage > 25:
             icon = "󰖀  "
             color = "orange"
@@ -104,7 +130,7 @@ def vol():
 def main():
     return [
         widget.Clock(
-            format=" %b %e      %H:%M  ",
+            format=" %H:%M ",
             **widgetDecorations,
         ),
         widget.Spacer(
@@ -119,12 +145,13 @@ def main():
             },
             **widgetDecorations,
         ),
-        widget.Spacer(),
+        widget.Spacer(
+            length=10,
+        ),
         widget.GroupBox(
             hide_unused=True,
             highlight_method="text",
             fontsize=18,
-            padding=5,
             disable_drag=True,
             **widgetDecorations,
         ),
@@ -134,7 +161,6 @@ def main():
         widget.TaskList(
             icon_size=24,
             parse_text=lambda _: "",
-            padding=2,
             highlight_method="text",
             txt_floating="󱂬 ",
             txt_maximized="󰏋 ",
@@ -152,7 +178,6 @@ def main():
         ),
         widget.GenPollText(
             func=batt,
-            format="{}",
             update_interval=0.1,
             **widgetDecorations,
         ),
@@ -161,7 +186,6 @@ def main():
         ),
         widget.GenPollText(
             func=bright,
-            format="{}",
             update_interval=0.1,
             mouse_callbacks={
                 "Button4": lazy.spawn("brightnessctl set +5%"),
@@ -175,15 +199,16 @@ def main():
 def misc():
     return [
         widget.Clock(
-            format=" %b %e     %H:%M ",
+            format=" %H:%M ",
             **widgetDecorations,
         ),
-        widget.Spacer(),
+        widget.Spacer(
+            length=10,
+        ),
         widget.GroupBox(
             hide_unused=True,
             highlight_method="text",
             fontsize=18,
-            padding=5,
             disable_drag=True,
             **widgetDecorations,
         ),
@@ -193,7 +218,6 @@ def misc():
         widget.TaskList(
             icon_size=24,
             parse_text=lambda _: "",
-            padding=2,
             highlight_method="text",
             txt_floating="󱂬 ",
             txt_maximized="󰏋 ",
