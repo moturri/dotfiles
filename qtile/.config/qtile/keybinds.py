@@ -29,7 +29,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
-    Key([mod], "q", lazy.spawn("rofi -show run")),
+    Key([mod], "a", lazy.spawn("rofi -show run")),
     Key([mod], "period", lazy.next_screen()),
     Key([mod], "comma", lazy.prev_screen()),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
@@ -62,6 +62,14 @@ mouse = [
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
+
+
+mouse.extend(
+    [
+        Drag([mod], "Button4", lazy.layout.up(), start=lazy.layout.previous()),
+        Drag([mod], "Button5", lazy.layout.down(), start=lazy.layout.next()),
+    ]
+)
 
 
 group_names = [
@@ -142,11 +150,13 @@ groups.append(
     )
 )
 
-keys.extend(
-    [
-        Key([mod], "b", lazy.group["scratchpad"].dropdown_toggle("term")),
-        Key([mod], "u", lazy.group["scratchpad"].dropdown_toggle("mixer")),
-        Key([mod], "g", lazy.group["scratchpad"].dropdown_toggle("ranger")),
-        Key([mod], "y", lazy.group["scratchpad"].dropdown_toggle("yazi")),
-    ]
-)
+
+scratches = {
+    "term": "b",
+    "mixer": "u",
+    "ranger": "g",
+    "yazi": "y",
+}
+
+for name, key in scratches.items():
+    keys.append(Key([mod], key, lazy.group["scratchpad"].dropdown_toggle(name)))

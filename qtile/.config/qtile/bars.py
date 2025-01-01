@@ -30,7 +30,7 @@ def bright():
     )
 
     if result.returncode != 0 or max_brightness.returncode != 0:
-        return "🌟  N/A"
+        return "👾 %"
 
     current_brightness = int(result.stdout.strip())
     max_brightness = int(max_brightness.stdout.strip())
@@ -46,11 +46,11 @@ def bright():
         icon = "🌥️ "
         color = "dodgerblue"
     elif brightness_percentage > 20:
-        icon = "🌗 "
+        icon = "🌙 "
         color = "peru"
     else:
-        icon = "🌙 "
-        color = "crimson"
+        icon = "🌒 "
+        color = "dimgrey"
 
     return f'<span foreground="{color}">{icon} {brightness_percentage}%</span>'
 
@@ -58,7 +58,7 @@ def bright():
 def batt():
     result = subprocess.run(["acpi"], capture_output=True, text=True)
     if result.returncode != 0:
-        return "󰂃  N/A"
+        return "💀 %"
 
     output = result.stdout.strip().split(", ")
     battery_percentage = int(output[1].replace("%", "").strip())
@@ -71,7 +71,7 @@ def batt():
         color = "palegreen"
     elif battery_percentage > 40:
         icon = "  "
-        color = "peru"
+        color = "mediumpurple"
     elif battery_percentage > 20:
         icon = "  "
         color = "orange"
@@ -101,10 +101,10 @@ def vol():
             volume_percentage = 150
         if volume_percentage == 0:
             icon = "  "
-            color = "red"
+            color = "brown"
         elif volume_percentage > 125:
             icon = "󰕾  "
-            color = "red"
+            color = "crimson"
         elif volume_percentage > 100:
             icon = "󰕾  "
             color = "orangered"
@@ -119,18 +119,18 @@ def vol():
             color = "orange"
         else:
             icon = "󰕿  "
-            color = "red"
+            color = "dimgrey"
 
         return f'<span foreground="{color}">{icon} {volume_percentage}%</span>'
 
     except subprocess.CalledProcessError:
-        return "󰕿  N/A"
+        return "󰕿 %"
 
 
 def main():
     return [
         widget.Clock(
-            format=" %H:%M ",
+            format="%e %b   %H:%M ",
             **widgetDecorations,
         ),
         widget.Spacer(
@@ -145,9 +145,7 @@ def main():
             },
             **widgetDecorations,
         ),
-        widget.Spacer(
-            length=10,
-        ),
+        widget.Spacer(),
         widget.GroupBox(
             hide_unused=True,
             highlight_method="text",
@@ -178,7 +176,7 @@ def main():
         ),
         widget.GenPollText(
             func=batt,
-            update_interval=0.1,
+            update_interval=1,
             **widgetDecorations,
         ),
         widget.Spacer(
@@ -202,9 +200,7 @@ def misc():
             format=" %H:%M ",
             **widgetDecorations,
         ),
-        widget.Spacer(
-            length=10,
-        ),
+        widget.Spacer(),
         widget.GroupBox(
             hide_unused=True,
             highlight_method="text",

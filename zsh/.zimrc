@@ -22,6 +22,7 @@ zmodule fzf
 zmodule archive
 zmodule pvenv
 zmodule kiesman99/zim-zoxide
+zmodule exa
 
 #
 # Prompt

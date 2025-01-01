@@ -1,35 +1,50 @@
--- General Settings
+local opt = vim.opt
+
+vim.g.have_nerd_font = true
 vim.o.background = "dark"
 vim.g.mapleader = " "
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set cmdheight=2")
-vim.cmd("set colorcolumn=80")
-vim.cmd("set showtabline=2")
-vim.opt.hlsearch = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = "a"
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.g.have_nerd_font = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.signcolumn = "yes"
-vim.opt.timeoutlen = 500
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.opt.inccommand = "split"
-vim.opt.cursorline = true
-vim.opt.scrolloff = 10
-vim.opt.expandtab = true
 vim.o.foldenable = true
-vim.o.foldmethod = "manual"
-vim.o.foldlevel = 99
-vim.o.foldcolumn = '1'
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.cmdheight = 2
+opt.colorcolumn = "100"
+opt.showtabline = 2
+opt.completeopt = "menuone,noinsert,noselect"
+opt.backspace = "indent,eol,start"
+opt.termguicolors = true
+opt.hlsearch = true
+opt.number = true
+opt.relativenumber = true
+opt.mouse = "a"
+opt.breakindent = true
+opt.smartindent = true
+opt.undofile = true
+opt.ignorecase = true
+opt.incsearch = true
+opt.wrap = false
+opt.smartcase = true
+opt.signcolumn = "yes"
+opt.timeoutlen = 500
+opt.splitright = true
+opt.splitbelow = true
+opt.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.inccommand = "split"
+opt.scrolloff = 10
+opt.expandtab = true
+opt.iskeyword:append("-")
+opt.selection = "exclusive"
+opt.mouse = "a"
+-- opt.clipboard:append("unnamedplus")
+opt.encoding = "UTF-8"
+opt.showmode = false
+opt.foldmethod = "syntax"
+opt.foldlevel = 99
+opt.foldcolumn = '1'
+opt.modifiable = true
+opt.encoding = "UTF-8"
+opt.showmode = false
 
 vim.cmd([[
   augroup remember_folds
@@ -39,18 +54,13 @@ vim.cmd([[
   augroup END
 ]])
 
---vim.cmd.colorscheme "vim"
-
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.wo.number = true
---vim.keymap.set('n', '+', 'za', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "<C-W>,", ":vertical resize -10<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "<C-W>.", ":vertical resize +10<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<C-W>,", ":vertical resize -10<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-W>.", ":vertical resize +10<CR>", { noremap = true })

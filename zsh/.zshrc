@@ -129,16 +129,10 @@ unset key
 # }}} End configuration added by Zim install
 
 
-export TERMINAL="wezterm"
+export TERMINAL="kitty"
 export EDITOR="nvim"
 alias ls="eza --icons=always"
-
-
-precmd() {
-  print -Pn "\e]1;${(z)1}\a"
-  print -Pn "\e]2;$(history -1 | sed 's/^ *[0-9]* *//')\a"
-}
-
+alias fastfetch="fastfetch -c .config/fastfetch/config.json"
 
 cheat() {
     curl -s "https://cheat.sh/$1"

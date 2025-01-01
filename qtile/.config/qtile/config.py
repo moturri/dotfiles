@@ -33,12 +33,12 @@ screens = [
     Screen(
         wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/arc.jpg",
         wallpaper_mode="stretch",
-        top=bar.Bar(main(), 28, background=lucid, margin=[0, 8, 0, 8]),
+        top=bar.Bar(main(), 28, background=lucid, margin=[4, 8, 0, 8]),
     ),
     Screen(
         wallpaper="/mnt/sda1/Library/OS/customs/UnixImgs/arc.jpg",
         wallpaper_mode="stretch",
-        top=bar.Bar(misc(), 28, background=lucid, margin=[0, 8, 0, 8]),
+        top=bar.Bar(misc(), 28, background=lucid, margin=[4, 8, 0, 8]),
     ),
 ]
 
@@ -47,7 +47,7 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
-cursor_warp = True
+cursor_warp = False
 floating_layout = layout.Floating(
     border_width=0,
     float_rules=[
@@ -61,7 +61,7 @@ floating_layout = layout.Floating(
         Match(wm_class="arandr"),
         Match(wm_class="blueman-manager"),
         Match(wm_class="localsend_app"),
-        # Match(wm_class="wihotspot"),
+        Match(wm_class="wihotspot"),
         Match(wm_class="nm-connection-editor"),
     ],
 )
@@ -84,4 +84,4 @@ def autostart():
     subprocess.run([monitorScript])
 
 
-wmname = "LG3D"
+wmname = "qtile"
