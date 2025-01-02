@@ -133,6 +133,7 @@ export TERMINAL="kitty"
 export EDITOR="nvim"
 alias ls="eza --icons=always"
 alias fastfetch="fastfetch -c .config/fastfetch/config.json"
+alias vi="vim"
 
 cheat() {
     curl -s "https://cheat.sh/$1"

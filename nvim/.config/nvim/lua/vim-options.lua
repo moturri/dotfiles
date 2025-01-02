@@ -39,8 +39,7 @@ opt.mouse = "a"
 -- opt.clipboard:append("unnamedplus")
 opt.encoding = "UTF-8"
 opt.showmode = false
-opt.foldmethod = "syntax"
-opt.foldlevel = 99
+opt.foldmethod = "manual"
 opt.foldcolumn = '1'
 opt.modifiable = true
 opt.encoding = "UTF-8"

@@ -2,6 +2,7 @@ import subprocess
 
 from libqtile.lazy import lazy
 from qtile_extras import widget
+from qtile_extras.widget import GlobalMenu
 from qtile_extras.widget.decorations import RectDecoration
 
 ultra_dark = [
@@ -168,8 +169,18 @@ def main():
         widget.Spacer(
             length=10,
         ),
-        widget.Systray(
-            padding=10,
+        widget.CPU(
+            format="{load_percent}%",
+            **widgetDecorations,
+        ),
+        widget.Spacer(
+            length=10,
+        ),
+        widget.Net(
+            interface="wlan0",
+            format="{down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}",
+            update_interval=1,
+            **widgetDecorations,
         ),
         widget.Spacer(
             length=10,
@@ -178,6 +189,12 @@ def main():
             func=batt,
             update_interval=1,
             **widgetDecorations,
+        ),
+        widget.Spacer(
+            length=10,
+        ),
+        widget.Systray(
+            padding=10,
         ),
         widget.Spacer(
             length=10,

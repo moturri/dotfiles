@@ -29,8 +29,8 @@ set pumheight=8
 set colorcolumn=80
 set clipboard+=unnamedplus
 set foldenable
-set foldmethod=syntax
-set foldlevelstart=99
+set foldmethod=manual
+set foldlevelstart=1
 set foldcolumn=1
 set showtabline=2
 
