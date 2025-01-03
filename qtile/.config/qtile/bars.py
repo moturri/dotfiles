@@ -146,6 +146,13 @@ def main():
             },
             **widgetDecorations,
         ),
+        widget.Spacer(
+            length=10,
+        ),
+        widget.CPU(
+            format="{load_percent}%",
+            **widgetDecorations,
+        ),
         widget.Spacer(),
         widget.GroupBox(
             hide_unused=True,
@@ -166,13 +173,6 @@ def main():
             txt_minimized="󰖰 ",
         ),
         widget.Prompt(**widgetDecorations),
-        widget.Spacer(
-            length=10,
-        ),
-        widget.CPU(
-            format="{load_percent}%",
-            **widgetDecorations,
-        ),
         widget.Spacer(
             length=10,
         ),

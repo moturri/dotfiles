@@ -128,15 +128,15 @@ groups.append(
             DropDown(
                 "mixer", "pavucontrol", width=0.4, height=0.6, x=0.3, y=0.1, opacity=0.9
             ),
-            DropDown(
-                "ranger",
-                "kitty -e ranger",
-                width=0.8,
-                height=0.8,
-                x=0.1,
-                y=0.1,
-                opacity=0.9,
-            ),
+            # DropDown(
+            #     "ranger",
+            #     "kitty -e ranger",
+            #     width=0.8,
+            #     height=0.8,
+            #     x=0.1,
+            #     y=0.1,
+            #     opacity=0.9,
+            # ),
             DropDown(
                 "yazi",
                 "kitty -e yazi",
@@ -154,7 +154,7 @@ groups.append(
 scratches = {
     "term": "b",
     "mixer": "u",
-    "ranger": "g",
+    # "ranger": "g",
     "yazi": "y",
 }
 
